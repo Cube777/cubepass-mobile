@@ -11,59 +11,22 @@
     <link href="css/ratchet.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 
+    <!-- JS scripts -->
+    <script src="cordova.js"></script>
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+    <script src="js/lib/fastclick.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/DOMSetup.js"></script>
+
   </head>
+
   <body>
-    <!-- All content so be located in following div -->
-    <div class="render"></div>
+    <!-- All content to be located in following render div -->
+    <div id="render">
+      <!-- Loading screen -->
+    </div>
 
-    <!-- Content start -->
-    <script id="tpl-login" type="text/template">
-      <header class="bar bar-nav">
-        <h1 class="title">CubePass Login</h1>
-      </header>
-
-      <div class="content">
-        <img id="login-logo" src="img/Logo.png">
-        <input id="txtPassword" type="password" placeholder="Password">
-        <button id="btnLogin" class="btn btn-positive btn-block">Login</button>
-      </div>
-    </script>
-
-    <script id="tpl-home" type="text/template">
-      <header class="bar bar-nav">
-        <h1 class="title">CubePass - Home</h1>
-        <a href="#" onclick="app.rendertpl('newitem')"><span class="icon icon-compose pull-right"></span></a>
-      </header>
-      <div class="content">
-        <ul class="table-view">
-          <li class="table-view-cell">
-            <a class="navigate-right" href="#" onclick="app.rendertpl('login')">Item 1</a>
-          </li>
-        </ul>
-      </div>
-    </script>
-
-    <script id="tpl-newitem" type="text/template">
-      <header class="bar navbar">
-        <a href="#" onclick="app.rendertpl('home')"><span class="icon icon-trash pull-left"></span></a>
-        <h1 class="title">New Item</h1>
-      </header>
-      <div class="content">
-
-      </div>
-    </script>
-
-
-
-    <!-- Content end -->
-
-  <script src="cordova.js"></script>
-  <script src="js/lib/jquery-2.1.4.min.js"></script>
-  <script src="js/lib/fastclick.js"></script>
   <script src="js/lib/ratchet.min.js"></script>
-  <script src="js/lib/handlebars-v3.0.3.js"></script>
-
-  <script src="js/app.js"></script>
-  <script src="js/DOMSetup.js"></script>
+  <script src="js/cube-encryption.js"></script>
   </body>
 </html>

@@ -7,35 +7,40 @@ var app = {
   bindEvents : function() {
     if (this.isCordova) {
       console.log('Binding app events');
-      document.addEventListener('deviceready', this.deviceReady(),false);
+      document.addEventListener('deviceready', this.deviceReady, false);
     }
   },
 
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
+    strEncrypt = Module.cwrap('strEncrypt', 'string', ['string', 'string']);
+    strDecrypt = Module.cwrap('strDecrypt', 'string', ['string', 'string']);
+    app.divrender = $('#render');
 
-    //Compile templates
-    this.maketpl('login');
-    this.maketpl('home');
-    this.maketpl('newitem')
-
-    this.rendertpl('home');
+    if (window.localStorage.getItem('user-password') == null) {
+      app.render('src/newuser.html');
+    } else {
+      app.render('src/login.html');
+    }
   },
 
-  maketpl : function(foo) {
-    console.log('Compiling and saving template ' + foo);
-    this.screens[foo] = Handlebars.compile($('#tpl-' + foo).html());
+  render : function(page) {
+    this.divrender.load(page);
   },
 
-  rendertpl : function(foo) {
-    console.log("Rendering " + foo);
-    $('.render').html(this.screens[foo]());
+  entity : function (ename, user, psswd, nts) {
+    this.entName = ename;
+    this.username = user;
+    this.password = psswd;
+    this.notes = nts;
   },
 
-  screens : {
-  },
+  entities : [
+    //To be filled
+  ],
 
+  userPassword : "",
   isCordova : typeof cordova !== 'undefined'
 };
 

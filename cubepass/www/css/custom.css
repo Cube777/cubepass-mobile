@@ -8,3 +8,8 @@
   max-height: 200px;
   max-width: 200px;
 }
+
+.warning {
+  background-color: transparent;
+  color: red;
+}

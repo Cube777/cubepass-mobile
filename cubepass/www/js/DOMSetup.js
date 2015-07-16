@@ -1,7 +1,4 @@
-$(document).ready(domReady);
-
-function domReady()
-{
+$(document).ready(function(){
 	var $a = $("a");
 
 	$a.click(function(x) {
@@ -10,6 +7,8 @@ function domReady()
 		window.open(url);
 	});
 
-	if (!app.isCordova)
+	if (!app.isCordova){
+		console.log('Manualy starting deviceReady');
 		app.deviceReady();
-};
+	}
+});
