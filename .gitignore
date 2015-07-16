@@ -1,5 +1,3 @@
 *~
-cubepass
-!cubepass/www
-!cubepass/config.xml
-!cubepass/hooks
+cubepass/platforms
+cubepass/plugins
