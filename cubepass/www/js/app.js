@@ -14,7 +14,6 @@ var app = {
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
-    app.divrender = $('#render');
 
     if (window.localStorage.getItem('user-password') == null) {
       app.render('src/newuser.html');
@@ -24,7 +23,10 @@ var app = {
   },
 
   render : function(page) {
-    this.divrender.load(page);
+    this.divrender.fadeOut(100, function() {
+      app.divrender.load(page);
+    });
+    this.divrender.fadeIn(100);
   },
 
   item : function (ename, user, psswd, nts) {

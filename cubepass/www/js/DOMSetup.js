@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	app.divrender = $('#render');
 	var $a = $("a");
 
 	$a.click(function(x) {
