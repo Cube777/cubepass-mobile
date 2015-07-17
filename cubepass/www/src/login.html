@@ -11,4 +11,12 @@
   <p class="warning">
     <b>Incorrect password, please try again...</b>
   </p>
+  <button onclick="rmdata()">click</button>
 </div>
+
+<script>
+  function rmdata(){
+    window.localStorage.removeItem('user-data');
+    window.localStorage.removeItem('user-password');
+  }
+</script>

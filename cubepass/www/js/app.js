@@ -36,9 +36,20 @@ var app = {
     this.notes = nts;
   },
 
-  entities : [
-    //To be filled
-  ],
+  entities : [],
+
+  saveData : function() {
+    var i;
+    for (i = 0; i < app.entities.user_data.length; i++) {
+      app.entities.user_data[i].entName = strEncrypt(app.entities.user_data[i].entName, app.userPassword);
+      app.entities.user_data[i].username = strEncrypt(app.entities.user_data[i].username, app.userPassword);
+      app.entities.user_data[i].password = strEncrypt(app.entities.user_data[i].password, app.userPassword);
+      app.entities.user_data[i].notes = strEncrypt(app.entities.user_data[i].notes, app.userPassword);
+    }
+
+    var data = JSON.stringify(app.entities);
+    window.localStorage.setItem('user-data', data);
+  },
 
   userPassword : "",
   isCordova : typeof cordova !== 'undefined'

@@ -10,5 +10,6 @@ function createUser() {
     return;
   }
   window.localStorage.setItem('user-password', strEncrypt(psswd.val(), psswd.val()));
+  window.localStorage.setItem('user-data', '{"user_data" : []}');
   app.divrender.load('src/login.html');
 };

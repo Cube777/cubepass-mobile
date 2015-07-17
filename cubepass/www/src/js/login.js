@@ -4,12 +4,17 @@ $(document).ready(function() {
 
 function login(){
   var psswd = window.localStorage.getItem('user-password');
+  var attempt = $('#password').val();
 
-  if (psswd != $('#password').val()) {
+  if (strDecrypt(psswd, attempt) != attempt) {
     $('#btnLogin').removeClass("btn-positive").addClass("btn-negative").html("Decrypting...");
     $('#password').attr("disabled", "true");
     setTimeout(reset, 3000);
+    return;
   }
+
+  app.userPassword = attempt;
+  app.render('src/home.html')
 };
 
 function reset() {
