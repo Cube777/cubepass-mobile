@@ -1,12 +1,10 @@
-<script id="entity-tpl" type="text/template">
+<script id="item-tpl" type="text/template">
   <li class="table-view-cell">
-    <a class="navigate-right" href='#' onclick="app.render('src/itemdetails.html')">
-      {{entity}}
+    <a class="navigate-right" href='#' onclick="app.currentItem = '{{item}}'; app.render('src/itemdetails.html')">
+      {{item}}
     </a>
   </li>
 </script>
-
-<script src="src/js/home.js"></script>
 
 <header class="bar bar-nav">
   <!-- Option menu for extra functionality? -->
@@ -15,6 +13,8 @@
 </header>
 
 <div class="content content-padded">
-  <ul id="entity-list" class="table-view"></ul>
+  <ul id="item-list" class="table-view"></ul>
   </ul>
 </div>
+
+<script src="src/js/home.js"></script>

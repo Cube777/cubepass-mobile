@@ -6,7 +6,9 @@
 
 <div class="content content-padded">
   <img id="login-logo" src="img/Logo.png">
-  <input id="password" type="password" placeholder="Password">
+  <form onsubmit="login()">
+    <input id="password" type="password" placeholder="Password">
+  </form>
   <a id="btnLogin" href='#' onclick="login()" class="btn btn-positive btn-block">Login</a>
   <p class="warning">
     <b>Incorrect password, please try again...</b>

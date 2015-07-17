@@ -14,8 +14,6 @@ var app = {
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
-    strEncrypt = Module.cwrap('strEncrypt', 'string', ['string', 'string']);
-    strDecrypt = Module.cwrap('strDecrypt', 'string', ['string', 'string']);
     app.divrender = $('#render');
 
     if (window.localStorage.getItem('user-password') == null) {
@@ -29,29 +27,45 @@ var app = {
     this.divrender.load(page);
   },
 
-  entity : function (ename, user, psswd, nts) {
+  item : function (ename, user, psswd, nts) {
     this.entName = ename;
     this.username = user;
     this.password = psswd;
     this.notes = nts;
   },
 
-  entities : [],
+  items : [],
 
   saveData : function() {
     var i;
-    for (i = 0; i < app.entities.user_data.length; i++) {
-      app.entities.user_data[i].entName = strEncrypt(app.entities.user_data[i].entName, app.userPassword);
-      app.entities.user_data[i].username = strEncrypt(app.entities.user_data[i].username, app.userPassword);
-      app.entities.user_data[i].password = strEncrypt(app.entities.user_data[i].password, app.userPassword);
-      app.entities.user_data[i].notes = strEncrypt(app.entities.user_data[i].notes, app.userPassword);
+    var temp = [];
+    for (i = 0; i < app.items.length; i++) {
+      temp[i] = {};
+      temp[i].entName = strEncrypt(app.items[i].entName, app.userPassword);
+      temp[i].username = strEncrypt(app.items[i].username, app.userPassword);
+      temp[i].password = strEncrypt(app.items[i].password, app.userPassword);
+      temp[i].notes = strEncrypt(app.items[i].notes, app.userPassword);
     }
-
-    var data = JSON.stringify(app.entities);
+    var data = {user_data : temp};
+    data = JSON.stringify(data);
     window.localStorage.setItem('user-data', data);
   },
 
+  loadData : function() {
+    var temp = JSON.parse(window.localStorage.getItem('user-data'));
+    app.items = temp.user_data;
+
+    var i;
+    for (i = 0; i < app.items.length; i++) {
+      app.items[i].entName = strDecrypt(app.items[i].entName, app.userPassword);
+      app.items[i].username = strDecrypt(app.items[i].username, app.userPassword);
+      app.items[i].password = strDecrypt(app.items[i].password, app.userPassword);
+      app.items[i].notes = strDecrypt(app.items[i].notes, app.userPassword);
+    }
+  },
+
   userPassword : "",
+  currentItem : "",
   isCordova : typeof cordova !== 'undefined'
 };
 
