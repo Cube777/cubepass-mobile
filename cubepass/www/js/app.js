@@ -14,6 +14,8 @@ var app = {
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
+    //REMOOOOVE
+    window.localStorage.removeItem('user-password');
 
     if (window.localStorage.getItem('user-password') == null) {
       app.render('src/newuser.html');
