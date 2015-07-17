@@ -9,19 +9,20 @@ function login(){
   var attempt = $('#password').val();
 
   if (attempt === "") {
-    return;
+    return false;
   }
-
+  console.log(attempt);
   if (strDecrypt(psswd, attempt) != attempt) {
     $('#btnLogin').removeClass("btn-positive").addClass("btn-negative").html("Decrypting...");
     $('#password').attr("disabled", "true");
     setTimeout(reset, 3000);
-    return;
+    return false;
   }
 
   app.userPassword = attempt;
   app.loadData();
-  app.render('src/home.html')
+  app.render('src/home.html');
+  return false;
 };
 
 function reset() {

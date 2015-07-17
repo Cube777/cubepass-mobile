@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  app.items.sort();
   var source = $('#item-tpl').html();
   var template = Handlebars.compile(source);
 
