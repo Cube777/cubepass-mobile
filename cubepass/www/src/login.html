@@ -7,18 +7,10 @@
 <div class="content content-padded">
   <img id="login-logo" src="img/Logo.png">
   <form onsubmit="return login()">
-    <input id="password" type="password" placeholder="Password">
+    <input id="password" type="password" placeholder="Password" autofocus="">
     <a id="btnLogin" href='#' onclick="login()" class="btn btn-positive btn-block">Login</a>
   </form>
   <p class="warning">
     <b>Incorrect password, please try again...</b>
   </p>
-  <button onclick="rmdata()">click</button>
 </div>
-
-<script>
-  function rmdata(){
-    window.localStorage.removeItem('user-data');
-    window.localStorage.removeItem('user-password');
-  }
-</script>

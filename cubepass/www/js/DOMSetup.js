@@ -1,4 +1,13 @@
 $(document).ready(function(){
+	var theme = window.localStorage.getItem('theme');
+	if (theme == null) {
+		window.localStorage.setItem('theme', 'light');
+		theme = "light";
+	}
+	if (theme == "dark") {
+		$('link[href="css/ratchet.min.css"]').attr('href', 'css/ratchet.mod.css');
+	}
+
 	app.divrender = $('#render');
 	var $a = $("a");
 
@@ -18,13 +27,5 @@ $(document).ready(function(){
 		navigator.app.exitApp();
 	}, false);
 
-	document.addEventListener('pause', function() {
-		app.saveData();
-		app.userPassword = "";
-		var i;
-		for (i = 0; i < app.entities.length; i++) {
-			app.entities.user_data[i] = undefined;
-		}
-		app.render('src/login.html');
-	}, false);
+	document.addEventListener('pause', app.logout, false);
 });

@@ -13,6 +13,7 @@
   background-color: transparent;
   color: red;
   text-align: center;
+  font-size: 1.25em;
 }
 
 p.item-info {
@@ -20,10 +21,6 @@ p.item-info {
   font-size: 1.2em;
 }
 
-input.item-info {
-  display: inline;
-}
-
-div.item-info {
-  display: inline;
+#question {
+  text-align: center;
 }

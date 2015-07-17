@@ -23,10 +23,10 @@ var app = {
   },
 
   render : function(page) {
-    this.divrender.fadeOut(100, function() {
+    this.divrender.fadeOut(150, function() {
       app.divrender.load(page);
     });
-    this.divrender.fadeIn(100);
+    this.divrender.fadeIn(150);
   },
 
   item : function (ename, user, psswd, nts) {
@@ -64,6 +64,16 @@ var app = {
       app.items[i].password = strDecrypt(app.items[i].password, app.userPassword);
       app.items[i].notes = strDecrypt(app.items[i].notes, app.userPassword);
     }
+  },
+
+  logout : function() {
+    app.saveData();
+		app.userPassword = "";
+		var i;
+		for (i = 0; i < app.items; i++) {
+			app.items[i] = undefined;
+		}
+		app.render('src/login.html');
   },
 
   userPassword : "",

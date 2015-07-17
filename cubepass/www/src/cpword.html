@@ -1,0 +1,22 @@
+<script src="src/js/cpword.js"></script>
+
+<header class="bar bar-nav">
+  <a href="#" onclick="app.render('src/options.html')" class="icon icon-left-nav pull-left"></a>
+  <h1 class="title">Change account password</h1>
+</header>
+
+<div class="content content-padded">
+  <p>
+    Remember that this password <strong>CANNOT</strong> be
+    retrieved if lost, and then your data will stay encrypted...forever!
+    The password you set below must protect all others, so choose it wisely.
+  </p>
+  <form onsubmit="change_pword()">
+    <input class="req" type="password" id="password" placeholder="New password">
+    <input class="req" type="password" id="cpassword" placeholder="Confirm new password">
+  </form>
+  <a href="#" onclick="change_pword()" class="btn btn-block btn-primary">Change account password</a>
+  <p class="warning">
+    Passwords do not match!
+  </p>
+</div>

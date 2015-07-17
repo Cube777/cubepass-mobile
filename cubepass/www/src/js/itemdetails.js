@@ -15,6 +15,17 @@ $(document).ready(function() {
   $('.warning').fadeOut(0);
 });
 
+$('.req').keyup(function() {
+  var test = ($('#username').val() == "");
+  test = test || ($('#password').val() == "");
+
+  if (test) {
+    $('.icon-check').fadeOut();
+  } else {
+    $('.icon-check').fadeIn();
+  }
+})
+
 function togglePword() {
   if (pwordShowing) {
     $('#btnShow').addClass('btn-outlined');
@@ -33,6 +44,7 @@ function toggleEdit() {
       $('.icon-left-nav').removeClass('icon-left-nav').addClass('icon-trash').attr('onclick', 'trash_this()');
       $('.icon-edit').removeClass('icon-edit').addClass('icon-check').attr('onclick', 'save_this()');
     });
+    $('#username').focus();
     $('.icon').fadeIn();
   } else {
     $('.dataf').attr('readonly', '');
@@ -46,9 +58,7 @@ function toggleEdit() {
 }
 
 function trash_this() {
-  app.items.splice(arrNum, 1);
-  app.saveData();
-  app.render('src/home.html');
+  app.render('src/deleteitem.html');
 }
 
 function save_this() {

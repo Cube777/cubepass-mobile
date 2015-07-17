@@ -7,14 +7,13 @@
 </script>
 
 <header class="bar bar-nav">
-  <!-- Option menu for extra functionality? -->
+  <a href="#" onclick="app.render('src/options.html')" class="icon icon-gear pull-left"></a>
   <h1 class="title">CubePass - Home</h1>
-  <a href="#" onclick="app.render('src/newitem.html')"><span class="icon icon-compose pull-right"></span></a>
+  <a href="#" onclick="app.render('src/newitem.html')" class="icon icon-compose pull-right"></a>
 </header>
 
 <div class="content content-padded">
   <ul id="item-list" class="table-view"></ul>
-  </ul>
 </div>
 
 <script src="src/js/home.js"></script>

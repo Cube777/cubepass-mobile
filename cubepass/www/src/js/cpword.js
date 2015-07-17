@@ -12,17 +12,19 @@ $(document).ready(function() {
       $('.btn').fadeIn();
     }
   })
-});
+})
 
-function createUser() {
+function change_pword() {
   var psswd = $('#password');
   var cpsswd = $('#cpassword');
   if (psswd.val() != cpsswd.val()) {
     $('.warning').fadeIn();
     return false;
   }
-  window.localStorage.setItem('user-password', strEncrypt(psswd.val(), psswd.val()));
-  window.localStorage.setItem('user-data', '{"user_data" : []}');
-  app.divrender.load('src/login.html');
+
+  app.userPassword = cpsswd.val();
+  window.localStorage.setItem('user-password', strEncrypt(cpsswd.val(), cpsswd.val()));
+  app.saveData();
+  app.render('src/options.html');
   return false;
-};
+}
