@@ -6,11 +6,11 @@ function strEncrypt(plaintext, keyword) {
   var shifts = HashString(keyword);
   var strBlocks = [];
   var temp;
-  var i;
-  for (i = 0; i < plaintext.length; i++) {
+  var i = 0;
+  while (i < plaintext.length) {
     temp = "";
-    while ((i < plaintext.length) && (temp.length <= keyword.length)) {
-      temp += plaintext[i];
+    while ((i < plaintext.length) && (temp.length < keyword.length)) {
+      temp += plaintext.charAt(i);
       i++;
     }
     strBlocks.push(temp);
@@ -41,7 +41,53 @@ function strEncrypt(plaintext, keyword) {
 }
 
 function strDecrypt(ciphertext, keyword) {
-  return ciphertext;
+  if ((ciphertext == "") || (keyword == "")){
+    return "";
+  }
+
+  var shifts = HashString(keyword);
+  var trailChars = TrailingChars(shifts);
+  var i;
+
+  for (i = 0; i < trailChars; i++) {
+    if (ciphertext == "") {
+      return "";
+    }
+
+    ciphertext = ciphertext.slice(0, -1);
+  }
+
+  var strBlocks = [];
+  var temp;
+  i = 0;
+  while (i < ciphertext.length) {
+    temp = "";
+    while ((i < ciphertext.length) && (temp.length < keyword.length)) {
+      temp += ciphertext.charAt(i);
+      i++;
+    }
+    strBlocks.push(temp);
+  }
+
+  var currKeyword = keyword;
+  var plaintext = [];
+  var tempShift;
+
+  for (i = 0; i < strBlocks.length; i++) {
+    tempShift = HashString(currKeyword);
+    temp = ShiftBack(strBlocks[i], tempShift);
+    plaintext.push(temp);
+
+    currKeyword = ShiftForward(strBlocks[i], shifts);
+  }
+
+  temp = "";
+
+  for (i = 0; i < plaintext.length; i++) {
+    temp += plaintext[i];
+  }
+
+  return temp;
 }
 
 function HashString(str) {
@@ -74,6 +120,24 @@ function ShiftForward(str, shifts) {
 
     while (ascii > 126) {
       ascii -= 95;
+    }
+
+    temp += String.fromCharCode(ascii);
+  }
+
+  return temp;
+}
+
+function ShiftBack(str, shifts) {
+  var ascii;
+  var temp = "";
+  var i;
+
+  for (i = 0; i < str.length; i++) {
+    ascii = str.charCodeAt(i) - shifts[i];
+
+    while (ascii < 32) {
+      ascii += 95;
     }
 
     temp += String.fromCharCode(ascii);
