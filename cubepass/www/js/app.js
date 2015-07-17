@@ -12,6 +12,10 @@ var app = {
   },
 
   deviceReady : function() {
+    if (this.device_ready) {
+      return;
+    }
+    this.device_ready = true;
     console.log('Cordova ready');
     FastClick.attach(document.body);
 
@@ -76,6 +80,7 @@ var app = {
 		app.render('src/login.html');
   },
 
+  device_ready : false,
   userPassword : "",
   currentItem : "",
   isCordova : typeof cordova !== 'undefined'

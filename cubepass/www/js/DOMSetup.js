@@ -28,4 +28,5 @@ $(document).ready(function(){
 	}, false);
 
 	document.addEventListener('pause', app.logout, false);
+	setTimeout(app.deviceReady, 1000);
 });
