@@ -4,7 +4,7 @@ var arrNum = -1;
 
 $(document).ready(function() {
   $('.title').text("Details - " + app.currentItem);
-  for (arrNum = 0; app.items[arrNum].entName != app.currentItem; arrNum++);
+  for (arrNum = 0; app.items[arrNum].iname != app.currentItem; arrNum++);
 
   $('#username').val(app.items[arrNum].username);
   $('#password').val(app.items[arrNum].password);

@@ -1,18 +1,40 @@
 $(document).ready(function() {
-  app.items.sort();
-  var source = $('#item-tpl').html();
-  var template = Handlebars.compile(source);
+  if (!app.homeCompiled) {
+    console.log("Compiling home");
+    var source = $('#item-tpl').html();
+    app.homeTpl = Handlebars.compile(source);
+    app.homeCompiled = true;
+  }
+
+  app.updateHome();
 
   var html = "";
   for (i = 0; i < app.items.length; i++) {
-    html += template({item : app.items[i].entName});
+    html += app.homeTpl({item : app.homeItems[i]});
   }
   if (html === "") {
     html = "<p> It seems as though you don't have any items!" +
     " Create your first on by tapping the create button in the top-right corner" +
     "</p>";
-    $(".content").html(html).fadeOut(0).fadeIn();
+    $(".act-content").html(html).fadeOut(0).fadeIn();
   } else {
     $('#item-list').html(html);
   }
+
+  $('#srch').keyup(function() {
+    app.homeSrchQ = $('#srch').val();
+    app.updateHome();
+
+    var html = "";
+    for (i = 0; i < app.homeItems.length; i++) {
+      html += app.homeTpl({item : app.homeItems[i]});
+    }
+
+    if (html == "") {
+      html = '<p> No items found for search "' + app.homeSrchQ + '"</p>';
+      $('.act-content').html(html);
+    } else {
+      $('.act-content').html('<ul id="item-list" class="table-view">' + html + '</ul>');
+    }
+  });
 });

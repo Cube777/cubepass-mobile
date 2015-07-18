@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 function trash_it() {
   var arrNum;
-  for (arrNum = 0; app.items[arrNum].entName != app.currentItem; arrNum++);
+  for (arrNum = 0; app.items[arrNum].iname != app.currentItem; arrNum++);
 
   app.items.splice(arrNum, 1);
   app.saveData();

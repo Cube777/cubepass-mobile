@@ -19,6 +19,7 @@ function login(){
   }
 
   app.userPassword = attempt;
+  app.loginSafe = true;
   app.loadData();
   app.render('src/home.html');
   return false;
@@ -28,4 +29,10 @@ function reset() {
   $('#password').val('').removeAttr('disabled');
   $('#btnLogin').removeClass("btn-negative").addClass("btn-positive").html("Login");
   $('.warning').fadeIn();
+}
+
+function unsafeLogin() {
+  app.userPassword = $('#password').val();
+  app.loadData();
+  app.render('src/home.html');
 }

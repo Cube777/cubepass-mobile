@@ -20,7 +20,7 @@ function createItem() {
   var i;
   var name = $('#item-name');
   for (i = 0; i < app.items.length; i++) {
-    if (app.items[i].entName === name.val()) {
+    if (app.items[i].iname === name.val()) {
       used = true;
       $('.warning').fadeIn();
       return;
@@ -31,7 +31,7 @@ function createItem() {
   if ($('#notes').val() === "") {
     delete app.items[app.items.length - 1].notes;
   }
-
+  console.log('Creating new item "' + $('#item-name').val() + '"');
   app.saveData();
   app.render('src/home.html');
 }

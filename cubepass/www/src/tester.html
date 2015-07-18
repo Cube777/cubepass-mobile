@@ -1,0 +1,21 @@
+<script src="src/js/tester.js"></script>
+
+<header class="bar bar-nav">
+  <a hef="#" onclick="app.render('src/login.html')" class="icon icon-left-nav pull-left"></a>
+  <h1 class="title">Test encryption</h1>
+</header>
+
+<div class="content content-padded">
+  <input id="keyword" type="text" placeholder="Keyword (Password)">
+  <p class="item-info">
+    Input to be encrypted/decrypted
+  </p>
+  <textarea id="input" rows="4"></textarea>
+  <p class="item-info">
+    Output
+  </p>
+  <textarea id="output" rows="4" readonly=""></textarea>
+  <a href="#" onclick="encrypt()" class="btn btn-block btn-primary">Encrypt</a>
+  <a href="#" onclick="decrypt()" class="btn btn-block btn-primary">Decrypt</a>
+  <a href="#" onclick="copy()" class="btn btn-block">Copy output into input</a>
+</div>
