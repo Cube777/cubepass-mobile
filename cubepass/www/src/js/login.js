@@ -11,7 +11,6 @@ function login(){
   if (attempt === "") {
     return false;
   }
-  console.log(attempt);
   if (strDecrypt(psswd, attempt) != attempt) {
     $('#btnLogin').removeClass("btn-positive").addClass("btn-negative").html("Decrypting...");
     $('#password').attr("disabled", "true");

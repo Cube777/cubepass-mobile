@@ -12,10 +12,6 @@ var app = {
   },
 
   deviceReady : function() {
-    if (this.device_ready) {
-      return;
-    }
-    this.device_ready = true;
     console.log('Cordova ready');
     FastClick.attach(document.body);
 
@@ -50,7 +46,9 @@ var app = {
       temp[i].entName = strEncrypt(app.items[i].entName, app.userPassword);
       temp[i].username = strEncrypt(app.items[i].username, app.userPassword);
       temp[i].password = strEncrypt(app.items[i].password, app.userPassword);
-      temp[i].notes = strEncrypt(app.items[i].notes, app.userPassword);
+      if (app.items[i].notes != undefined) {
+        temp[i].notes = strEncrypt(app.items[i].notes, app.userPassword);
+      }
     }
     var data = {user_data : temp};
     data = JSON.stringify(data);
@@ -66,7 +64,9 @@ var app = {
       app.items[i].entName = strDecrypt(app.items[i].entName, app.userPassword);
       app.items[i].username = strDecrypt(app.items[i].username, app.userPassword);
       app.items[i].password = strDecrypt(app.items[i].password, app.userPassword);
-      app.items[i].notes = strDecrypt(app.items[i].notes, app.userPassword);
+      if (app.items[i].notes != undefined) {
+        app.items[i].notes = strDecrypt(app.items[i].notes, app.userPassword);
+      }
     }
   },
 
@@ -80,7 +80,6 @@ var app = {
 		app.render('src/login.html');
   },
 
-  device_ready : false,
   userPassword : "",
   currentItem : "",
   isCordova : typeof cordova !== 'undefined'
