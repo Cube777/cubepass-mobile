@@ -1432,3 +1432,8 @@ select {
 .icon-left:before {
   content: '\e822';
 }
+
+#question {
+  background-color: transparent;
+  color: whitesmoke;
+}
