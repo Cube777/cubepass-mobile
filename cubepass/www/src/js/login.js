@@ -30,9 +30,3 @@ function reset() {
   $('#btnLogin').removeClass("btn-negative").addClass("btn-positive").html("Login");
   $('.warning').fadeIn();
 }
-
-function unsafeLogin() {
-  app.userPassword = $('#password').val();
-  app.loadData();
-  app.render('src/home.html');
-}

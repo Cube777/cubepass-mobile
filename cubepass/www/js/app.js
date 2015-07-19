@@ -14,6 +14,13 @@ var app = {
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
+    
+    document.addEventListener('backbutton', function() {
+  		app.saveData();
+  		navigator.app.exitApp();
+  	}, false);
+
+  	document.addEventListener('pause', app.logout, false);
 
     if (window.localStorage.getItem('user-password') == null) {
       app.render('src/newuser.html');

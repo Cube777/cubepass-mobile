@@ -1,0 +1,22 @@
+<script src="src/js/extras.js"></script>
+
+<header class="bar bar-nav">
+  <a href="#" onclick="app.render('src/options.html')" class="icon icon-left-nav pull-left"></a>
+  <h1 class="title">Extras</h1>
+</header>
+
+<div class="content content-padded">
+  <p>
+    "Force login" will log you out and then log you back in but with an incorrect password.
+    This is to show what will happen if the wrong password is used to decrypt your data. Go
+    ahead and try it, it's totally safe (but expect some weird errors, you'll need to exit the app
+    to restore all your data) :)
+  </p>
+  <input type="text" id="password" placeholder="Force login password">
+  <a href="#" onclick="unsafeLogin()" class="btn btn-block">Force login</a>
+  <p>
+    Below you can see the algorithm in action, go ahead and test it!
+  </p>
+  <a href="#" onclick="app.render('src/datashow.html')" class="btn btn-block">Show your encrypted data</a>
+  <a href="#" onclick="app.render('src/tester.html')" class="btn btn-block">Test encryption/decryption</a>
+</div>

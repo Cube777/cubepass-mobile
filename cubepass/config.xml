@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0.0' encoding='utf-8'?>
 <widget id="com.cube.cubepass" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CubePass</name>
     <icon src="www/img/Logo.png" />
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+      A secure, offline and easy-to-use password manager
     </description>
     <author email="pbscube@gmail.com" href="">
       Kobus van Schoor

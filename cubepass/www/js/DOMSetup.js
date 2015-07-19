@@ -21,11 +21,4 @@ $(document).ready(function(){
 		console.log('Manualy starting deviceReady');
 		app.deviceReady();
 	}
-
-	document.addEventListener('backbutton', function() {
-		app.saveData();
-		navigator.app.exitApp();
-	}, false);
-
-	document.addEventListener('pause', app.logout, false);
 });

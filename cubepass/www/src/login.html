@@ -6,6 +6,10 @@
 
 <div class="content content-padded">
   <img id="login-logo" src="img/Logo.png">
+  <p style="text-align:center">
+    Remember the backbutton <strong>ALWAYS</strong> closes CubePass for security
+    reasons
+  </p>
   <form onsubmit="return login()">
     <input id="password" type="password" placeholder="Password" autofocus="">
     <a id="btnLogin" href='#' onclick="login()" class="btn btn-positive btn-block">Login</a>
@@ -13,13 +17,4 @@
   <p class="warning">
     <b>Incorrect password, please try again...</b>
   </p>
-  <p>
-    The following button allows you to log in regardless whether or not the password you entered is
-    correct, but it will show you what will happen should someone try to decrypt your data with an
-    invalid password. Weird errors is almost guaranteed because of faulty decryption(Give it a try,
-    its completely safe a no changes gets saved) :)
-  </p>
-  <a href="#" onclick="unsafeLogin()" class="btn btn-block">Login without check</a>
-  <a href="#" onclick="app.render('src/datashow.html')" class="btn btn-block">Show encrypted data</a>
-  <a href="#" onclick="app.render('src/tester.html')" class="btn btn-block">Test encryption</a>
 </div>
