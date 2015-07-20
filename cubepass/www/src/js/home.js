@@ -34,7 +34,7 @@ $(document).ready(function() {
       html = '<p> No items found for search "' + app.homeSrchQ + '"</p>';
       $('.act-content').html(html);
     } else {
-      $('.act-content').html('<ul id="item-list" class="table-view">' + html + '</ul>');
+      $('.act-content').html('<div id="item-list">' + html + '</div>');
     }
   });
 });

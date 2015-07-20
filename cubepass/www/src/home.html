@@ -1,9 +1,7 @@
 <script id="item-tpl" type="text/template">
-  <li class="table-view-cell">
-    <a class="navigate-right" href='#' onclick="app.currentItem = '{{item}}'; app.render('src/itemdetails.html')">
+    <a class="btn btn-block" style="background-color:#FF6600;padding-top:5px;padding-bottom:5px" href='#' onclick="app.currentItem = '{{item}}'; app.render('src/itemdetails.html')">
       {{item}}
     </a>
-  </li>
 </script>
 
 <header class="bar bar-nav">
@@ -15,7 +13,7 @@
 <div class="content content-padded">
   <input type="search" id="srch" placeholder="Search">
   <div class="act-content">
-    <ul id="item-list" class="table-view"></ul>
+    <div id="item-list"></div>
   </div>
 </div>
 
