@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  if (window.localStorage.getItem('theme') == "dark") {
-    $("#btnTheme").html("Switch to light theme");
+  if (window.localStorage.getItem('theme') == "light") {
+    $("#btnTheme").html("Switch to dark theme");
   }
 });
 
