@@ -24,3 +24,12 @@ p.item-info {
 #question {
   text-align: center;
 }
+
+.home-btns {
+  background-color: #FF6600;
+  color: black;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-color: #FF6600;
+  border-radius: 7px;
+}
