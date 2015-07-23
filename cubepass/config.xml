@@ -3,7 +3,7 @@
     <name>CubePass</name>
     <icon src="www/img/Logo.png" />
     <description>
-      A secure, offline and easy-to-use password manager
+      An open-source, secure and offline easy-to-use password manager ("password keeper")
     </description>
     <author email="pbscube@gmail.com" href="">
       Kobus van Schoor
