@@ -64,7 +64,13 @@ var app = {
         temp[i].notes = strEncrypt(app.items[i].notes, app.userPassword);
       }
     }
-    var data = {user_data : temp};
+    var data;
+    var tMemo = strEncrypt(app.memoData, app.userPassword);
+    if (app.memoData == "") {
+      data = {user_data : temp};
+    } else {
+      data = {user_data : temp, user_memo : tMemo};
+    }
     data = JSON.stringify(data);
     window.localStorage.setItem('user-data', data);
   },
@@ -73,6 +79,9 @@ var app = {
     console.log("Loading data");
     var temp = JSON.parse(window.localStorage.getItem('user-data'));
     app.items = temp.user_data;
+    if (temp.user_memo != undefined) {
+      app.memoData = strDecrypt(temp.user_memo, app.userPassword);
+    }
 
     var i;
     for (i = 0; i < app.items.length; i++) {
@@ -122,6 +131,7 @@ var app = {
     });
   },
 
+  memoData : "",
   homeSrchQ : "",
   homeCompiled : false,
   homeTpl : "",
