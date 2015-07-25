@@ -4,7 +4,7 @@ function strEncrypt(plaintext, keyword) {
     return "";
   }
 
-  //Calculate keyword shifts
+  //Calculate main keyword shifts
   var shifts = HashString(keyword);
   //Will hold blocks of the plaintext
   var strBlocks = [];
@@ -57,14 +57,18 @@ function strEncrypt(plaintext, keyword) {
 }
 
 function strDecrypt(ciphertext, keyword) {
+  //Return empty string if plaintext or keyword is empty
   if ((ciphertext == "") || (keyword == "")){
     return "";
   }
 
+  //Calculate main keyword shifts
   var shifts = HashString(keyword);
+  //Will hold blocks of the ciphertext
   var trailChars = TrailingChars(shifts);
   var i;
 
+  //Remove the trailing chars from the ciphertext
   for (i = 0; i < trailChars; i++) {
     if (ciphertext == "") {
       return "";
@@ -73,6 +77,7 @@ function strDecrypt(ciphertext, keyword) {
     ciphertext = ciphertext.slice(0, -1);
   }
 
+  //Break up the plaintext string into blocks the size of the keyword
   var strBlocks = [];
   var temp;
   i = 0;
@@ -85,10 +90,18 @@ function strDecrypt(ciphertext, keyword) {
     strBlocks.push(temp);
   }
 
+  //Will hold the current keyword (first will be the main keyword,
+  //the rest will be the keyword calculated from the previous block)
   var currKeyword = keyword;
+    //Will hold the blocks of plaintext
   var plaintext = [];
   var tempShift;
 
+  //First hash the current keyword, then shift the current
+  //string block backwards with the calculated shifts.
+  //Then calculate the next keyword by shifting forward the old
+  //encrypted block of text. Copy the new string block into
+  //the plaintext array.
   for (i = 0; i < strBlocks.length; i++) {
     tempShift = HashString(currKeyword);
     temp = ShiftBack(strBlocks[i], tempShift);
@@ -97,8 +110,8 @@ function strDecrypt(ciphertext, keyword) {
     currKeyword = ShiftForward(strBlocks[i], shifts);
   }
 
+  //Concatenate the plaintext array into one string
   temp = "";
-
   for (i = 0; i < plaintext.length; i++) {
     temp += plaintext[i];
   }
