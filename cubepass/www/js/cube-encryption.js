@@ -119,6 +119,7 @@ function strDecrypt(ciphertext, keyword) {
   return temp;
 }
 
+//Wil calculate shifts from a given string
 function HashString(str) {
   var shifts = [];
 
@@ -139,6 +140,7 @@ function HashString(str) {
   return shifts;
 }
 
+//Will shift a given string forward with a array of shifts
 function ShiftForward(str, shifts) {
   var ascii;
   var temp = "";
@@ -157,6 +159,7 @@ function ShiftForward(str, shifts) {
   return temp;
 }
 
+//Will shift a given string backwards with a array of shifts
 function ShiftBack(str, shifts) {
   var ascii;
   var temp = "";
@@ -175,6 +178,7 @@ function ShiftBack(str, shifts) {
   return temp;
 }
 
+//Will calculate the amount of trailing chars from a hashed string
 function TrailingChars(shifts) {
   var total = 0;
   var i;
