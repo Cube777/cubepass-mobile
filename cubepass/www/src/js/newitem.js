@@ -1,3 +1,4 @@
+var pwordShowing = false;
 var nItem = {
   name : null,
   username : null,
@@ -46,4 +47,15 @@ function createItem() {
   console.log('Creating new item "' + nItem.name.val() + '"');
   app.saveData();
   app.render('src/home.html');
+}
+
+function togglePword() {
+  if (!pwordShowing) {
+    $('#password').attr('type', 'text');
+    $('#tPword').removeClass('btn-outlined');
+  } else {
+    $('#password').attr('type', 'password');
+    $('#tPword').addClass('btn-outlined');
+  }
+  pwordShowing = !pwordShowing;
 }
