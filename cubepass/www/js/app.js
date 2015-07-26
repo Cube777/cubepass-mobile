@@ -6,7 +6,7 @@ var app = {
 
   bindEvents : function() {
     if (this.isCordova) {
-      console.log('Binding app events');
+      console.log('Binding Cordova events');
       document.addEventListener('deviceready', this.deviceReady, false);
       document.addEventListener('backbutton', this.logout, false);
       document.addEventListener('pause', this.logout, false);
