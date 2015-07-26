@@ -8,13 +8,8 @@ var app = {
     if (this.isCordova) {
       console.log('Binding app events');
       document.addEventListener('deviceready', this.deviceReady, false);
-
-      document.addEventListener('backbutton', function() {
-    		app.saveData();
-    		navigator.app.exitApp();
-    	}, false);
-
-      document.addEventListener('pause', app.logout, false);
+      document.addEventListener('backbutton', this.logout, false);
+      document.addEventListener('pause', this.logout, false);
     }
   },
 
@@ -96,13 +91,7 @@ var app = {
 
   logout : function() {
     app.saveData();
-		app.userPassword = "";
-    app.loginSafe = false;
-		var i;
-		for (i = 0; i < app.items; i++) {
-			app.items[i] = undefined;
-		}
-		app.render('src/login.html');
+    navigator.app.exitApp();
   },
 
   updateHome : function () {
