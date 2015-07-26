@@ -1,23 +1,32 @@
 var pwordShowing = false;
 var editing = false;
 var arrNum = -1;
+var details = {
+  username : null,
+  password : null,
+  notes : null
+};
+
 
 $(document).ready(function() {
   $('.title').text("Details - " + app.currentItem);
   for (arrNum = 0; app.items[arrNum].iname != app.currentItem; arrNum++);
+  details.username = $('#username');
+  details.password = $('#password');
+  details.notes = $('#notes');
 
-  $('#username').val(app.items[arrNum].username);
-  $('#password').val(app.items[arrNum].password);
+  details.username.val(app.items[arrNum].username);
+  details.password.val(app.items[arrNum].password);
   if (app.items[arrNum].notes != undefined) {
-    $('#notes').val(app.items[arrNum].notes);
+    details.notes.val(app.items[arrNum].notes);
   }
 
   $('.warning').fadeOut(0);
 });
 
 $('.req').keyup(function() {
-  var test = ($('#username').val() == "");
-  test = test || ($('#password').val() == "");
+  var test = (details.username.val() == "");
+  test = test || (details.password.val() == "");
 
   if (test) {
     $('.icon-check').fadeOut();
@@ -29,10 +38,10 @@ $('.req').keyup(function() {
 function togglePword() {
   if (pwordShowing) {
     $('#btnShow').addClass('btn-outlined');
-    $('#password').attr('type', 'password');
+    details.password.attr('type', 'password');
   } else {
     $('#btnShow').removeClass('btn-outlined');
-    $('#password').attr('type', 'text');
+    details.password.attr('type', 'text');
   }
   pwordShowing = !pwordShowing;
 }
@@ -40,19 +49,19 @@ function togglePword() {
 function toggleEdit() {
   if (!editing) {
     $('.dataf').removeAttr('readonly');
-    $('.icon').fadeOut(400, function() {
+    $('.icon').fadeOut(200, function() {
       $('.icon-left-nav').removeClass('icon-left-nav').addClass('icon-trash').attr('onclick', 'trash_this()');
       $('.icon-edit').removeClass('icon-edit').addClass('icon-check').attr('onclick', 'save_this()');
     });
-    $('#username').focus();
-    $('.icon').fadeIn();
+    details.username.focus();
+    $('.icon').fadeIn(200);
   } else {
     $('.dataf').attr('readonly', '');
-    $('.icon').fadeOut(400, function() {
+    $('.icon').fadeOut(200, function() {
       $('.icon-trash').removeClass('icon-trash').addClass('icon-left-nav').attr('onclick', 'app.render("src/home.html")');
       $('.icon-check').removeClass('icon-check').addClass('icon-edit').attr('onclick', 'toggleEdit()');
     });
-    $('.icon').fadeIn();
+    $('.icon').fadeIn(200);
   }
   editing = !editing;
 }
@@ -62,11 +71,11 @@ function trash_this() {
 }
 
 function save_this() {
-  app.items[arrNum].username = $('#username').val();
-  app.items[arrNum].password = $('#password').val();
+  app.items[arrNum].username = details.username.val();
+  app.items[arrNum].password = details.password.val();
   delete app.items[arrNum].notes;
-  if ($('#notes').val() != "") {
-    app.items[arrNum].notes = $('#notes').val();
+  if (details.notes.val() != "") {
+    app.items[arrNum].notes = details.notes.val();
   }
   app.saveData();
   toggleEdit();
