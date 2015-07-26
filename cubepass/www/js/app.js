@@ -8,19 +8,19 @@ var app = {
     if (this.isCordova) {
       console.log('Binding app events');
       document.addEventListener('deviceready', this.deviceReady, false);
+
+      document.addEventListener('backbutton', function() {
+    		app.saveData();
+    		navigator.app.exitApp();
+    	}, false);
+
+      document.addEventListener('pause', app.logout, false);
     }
   },
 
   deviceReady : function() {
     console.log('Cordova ready');
     FastClick.attach(document.body);
-    
-    document.addEventListener('backbutton', function() {
-  		app.saveData();
-  		navigator.app.exitApp();
-  	}, false);
-
-  	document.addEventListener('pause', app.logout, false);
 
     if (window.localStorage.getItem('user-password') == null) {
       app.render('src/newuser.html');
