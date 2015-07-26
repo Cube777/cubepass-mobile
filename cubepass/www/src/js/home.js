@@ -1,7 +1,7 @@
 var home = {
-  srch : "",
-  actContent : ""
-}
+  srch : null,
+  actContent : null
+};
 
 $(document).ready(function() {
   if (!app.homeCompiled) {
@@ -22,13 +22,14 @@ function update() {
   app.homeSrchQ = home.srch.val();
   app.updateHome();
 
+  var i;
   var html = "";
   for (i = 0; i < app.homeItems.length; i++) {
     html += app.homeTpl({item : app.homeItems[i]});
   }
 
-  if (html == "") {
-    if (app.homeSrchQ == "") {
+  if (html === "") {
+    if (app.homeSrchQ === "") {
       html = "<p> It seems as though you don't have any items!" +
       " Create your first one by tapping the create button in the top-right corner" +
       "</p>";

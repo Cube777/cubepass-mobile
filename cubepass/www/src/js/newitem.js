@@ -1,37 +1,49 @@
+var nItem = {
+  name : null,
+  username : null,
+  password : null,
+  notes : null,
+  iCheck : null
+};
+
 $(document).ready(function() {
-  $('.icon-check').fadeOut(0);
+  nItem.name = $('#item-name');
+  nItem.username = $('#username');
+  nItem.password = $('#password');
+  nItem.notes = $('#notes');
+  nItem.iCheck = $('.icon-check');
+
+  nItem.iCheck.fadeOut(0);
   $('.warning').fadeOut(0);
 });
 
 $('.req').keyup(function() {
-  var temp = ($('#item-name').val() === "");
-  temp = (($('#username').val() === "") || temp);
-  temp = (($('#password').val() === "") || temp);
+  var temp = (nItem.name.val() === "");
+  temp = ((nItem.username.val() === "") || temp);
+  temp = ((nItem.password.val() === "") || temp);
 
   if (!temp) {
-    $('.icon-check').fadeIn();
+    nItem.iCheck.fadeIn();
   }
   else {
-    $('.icon-check').fadeOut();
+    nItem.iCheck.fadeOut();
   }
 });
 
 function createItem() {
   var i;
-  var name = $('#item-name');
   for (i = 0; i < app.items.length; i++) {
-    if (app.items[i].iname === name.val()) {
-      used = true;
+    if (app.items[i].iname === nItem.name.val()) {
       $('.warning').fadeIn();
       return;
     }
   }
-  app.items.push(new app.item($('#item-name').val(), $('#username').val(), $('#password').val(), $('#notes').val()));
+  app.items.push(new app.item(nItem.name.val(), nItem.username.val(), nItem.password.val(), nItem.notes.val()));
 
-  if ($('#notes').val() === "") {
+  if (nItem.notes.val() === "") {
     delete app.items[app.items.length - 1].notes;
   }
-  console.log('Creating new item "' + $('#item-name').val() + '"');
+  console.log('Creating new item "' + nItem.name.val() + '"');
   app.saveData();
   app.render('src/home.html');
 }
